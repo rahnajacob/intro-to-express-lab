@@ -45,11 +45,23 @@ const shoes = [
     { name: "Fifty-Inch Heels", price: 175, type: "heel" }
 ];
 
-
-
-
-
-
+// Part 1: min price filter
+app.get("/shoes", (req, res) => {
+    return res.send(shoes.filter(shoe => {shoe.price > Number(req.query.min-price) }))
+//     return res.send(shoes.price > Number(req.query.min-price))
+})
+//Part 2: max price filter
+app.get("/shoes", (req, res) => {
+    return res.send(shoes.filter(shoe => {shoe.price < Number(req.query.max-price)}))
+})
+//Part 3: type filter
+app.get("/shoes", (req, res) => {
+    return res.send(shoes.filter(shoe => {shoe.type = req.query.type}))
+})
+//Part 4: full list, no filters
+app.get("/shoes", (req, res) => {
+    res.send(`${shoes}`)
+})
 
 
 
@@ -57,7 +69,7 @@ const shoes = [
 
 // app.get('/shoes', (req, res) => {
 //     // return res.send(shoes.filter(({price}) => price > req.params.minprice))
-//     result = shoes.filter(({price}) => price > Number(req.params.minprice))
+//     result = shoes.filter(({price}) => price > Number(req.query.minprice))
 //     res.send(result)
 // })
 
